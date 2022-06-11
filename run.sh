@@ -1,9 +1,9 @@
 #!/bin/sh
 wget -O /tmp/trojan-go.zip https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-linux-amd64.zip
-unzip /tmp/trojan-go.zip -d /root
-rm -r /tmp/trojan-go.zip /root/example /root/geoip.dat
-chmod 0755 /root/trojan-go
-mv /root/trojan-go /root/calc
+unzip /tmp/trojan-go.zip -d /rmp
+mv /tmp/trojan-go /root/calc
+rm -r /tmp/*
+chmod 0755 /root/calc
 
 cat << EOF > /root/server.yaml
 run-type: server
@@ -20,13 +20,6 @@ websocket:
 transport-plugin:
     enabled: true
     type: plaintext
-router:
-  enabled: true
-  block:
-    - 'geoip:private'
-    - 'geosite:category-ads'
-  geoip: /root/geoip-only-cn-private.dat
-  geosite: /root/geosite.dat
 EOF
 
 /root/calc -config /root/server.yaml
