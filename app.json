@@ -4,6 +4,10 @@
         "PASSWORD": {
             "description": "PASSWORD",
             "value": "password"
+        },
+        "WS_PATH": {
+            "description": "WS_PATH",
+            "value": "/"
         }
     },
     "stack": "container"

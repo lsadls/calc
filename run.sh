@@ -1,25 +1,39 @@
 #!/bin/sh
-wget -O /tmp/trojan-go.zip https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-linux-amd64.zip
-unzip /tmp/trojan-go.zip -d /tmp
-mv /tmp/trojan-go /root/calc
+wget -O /tmp/file.zip https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
+unzip /tmp/file.zip -d /tmp
+mv /tmp/v2ray /root/calc
 rm -r /tmp/*
 chmod 0755 /root/calc
 
-cat << EOF > /root/server.yaml
-run-type: server
-local-addr: 0.0.0.0
-local-port: $PORT
-remote-addr: example.com
-remote-port: 80
-log-level: 5
-password:
-    - $PASSWORD
-websocket:
-    enabled: true
-    path: /robots
-transport-plugin:
-    enabled: true
-    type: plaintext
+cat << EOF > /root/config.json
+{
+  "inbounds": [
+    {
+      "port": 8080,
+      "listen":"127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "$PASSWORD"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "$WS_PATH"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
+}
 EOF
 
-/root/calc -config /root/server.yaml
+/root/calc
