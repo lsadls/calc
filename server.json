@@ -1,0 +1,28 @@
+{
+  "inbounds": [
+    {
+      "port": 8080,
+      "listen":"127.0.0.1",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "a6ed9716-3e21-4ea5-9889-e2cb2c41e4bf"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/robots"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
+}
