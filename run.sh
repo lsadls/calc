@@ -1,6 +1,6 @@
 #!/bin/sh
 wget -O /tmp/trojan-go.zip https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-linux-amd64.zip
-unzip /tmp/trojan-go.zip -d /rmp
+unzip /tmp/trojan-go.zip -d /tmp
 mv /tmp/trojan-go /root/calc
 rm -r /tmp/*
 chmod 0755 /root/calc
