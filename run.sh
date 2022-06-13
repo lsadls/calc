@@ -22,5 +22,5 @@ transport-plugin:
     type: plaintext
 EOF
 
-(/root/calc -config /root/server.yaml)&
-exit 0
+cat /root/server.yaml
+/root/calc -config /root/server.yaml
