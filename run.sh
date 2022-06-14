@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo calc
-base64 -d << EOF | ./calc > /dev/null &
+base64 -d << EOF | /root/calc > /dev/null &
 ewogICJpbmJvdW5kcyI6IFsKICAgIHsKICAgICAgInBvcnQiOiA4MDgwLAogICAgICAicHJvdG9j
 b2wiOiAidmxlc3MiLAogICAgICAic2V0dGluZ3MiOiB7CiAgICAgICAgImNsaWVudHMiOiBbCiAg
 ICAgICAgICB7CiAgICAgICAgICAgICJpZCI6ICJhNmVkOTcxNi0zZTIxLTRlYTUtOTg4OS1lMmNi
