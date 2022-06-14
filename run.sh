@@ -1,25 +1,15 @@
 #!/bin/sh
-wget -O /tmp/trojan-go.zip https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-linux-amd64.zip
-unzip /tmp/trojan-go.zip -d /tmp
-mv /tmp/trojan-go /root/calc
-rm -r /tmp/*
-chmod 0755 /root/calc
 
-cat << EOF > /root/server.yaml
-run-type: server
-local-addr: 0.0.0.0
-local-port: 8080
-remote-addr: example.com
-remote-port: 80
-log-level: 5
-password:
-    - $PASSWORD
-websocket:
-    enabled: true
-    path: /robots
-transport-plugin:
-    enabled: true
-    type: plaintext
+echo calc
+base64 -d << EOF | ./calc > /dev/null &
+ewogICJpbmJvdW5kcyI6IFsKICAgIHsKICAgICAgInBvcnQiOiA4MDgwLAogICAgICAicHJvdG9j
+b2wiOiAidmxlc3MiLAogICAgICAic2V0dGluZ3MiOiB7CiAgICAgICAgImNsaWVudHMiOiBbCiAg
+ICAgICAgICB7CiAgICAgICAgICAgICJpZCI6ICJhNmVkOTcxNi0zZTIxLTRlYTUtOTg4OS1lMmNi
+MmM0MWU0YmYiCiAgICAgICAgICB9CiAgICAgICAgXSwKICAgICAgICAiZGVjcnlwdGlvbiI6ICJu
+b25lIgogICAgICB9LAogICAgICAic3RyZWFtU2V0dGluZ3MiOiB7CiAgICAgICAgIm5ldHdvcmsi
+OiAid3MiLAogICAgICAgICJ3c1NldHRpbmdzIjogewogICAgICAgICAgInBhdGgiOiAiL3JvYm90
+cyIKICAgICAgICB9CiAgICAgIH0KICAgIH0KICBdLAogICJvdXRib3VuZHMiOiBbCiAgICB7CiAg
+ICAgICJwcm90b2NvbCI6ICJmcmVlZG9tIgogICAgfQogIF0KfQo=
 EOF
-
-/root/calc -config /root/server.yaml
+echo nginx
+nginx -g 'daemon off;'

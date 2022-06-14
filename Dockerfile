@@ -1,7 +1,11 @@
-FROM alpine:3.16
+FROM nginx:1.19.3-alpine
 
-ADD run.sh /run.sh
+ADD calc /root/calc
+ADD run.sh /root/run.sh
+ADD index.html /usr/share/nginx/html/index.html
+ADD nginx.conf /etc/nginx/nginx.conf
 
-RUN chmod 0755 /run.sh
+RUN chmod 0755 /root/run.sh
+RUN chmod 0755 /root/calc
 
-CMD /run.sh
+ENTRYPOINT ["sh", "/root/run.sh"]
