@@ -1,25 +1,30 @@
 #!/bin/sh
-wget -O /tmp/trojan-go.zip https://github.com/p4gefau1t/trojan-go/releases/latest/download/trojan-go-linux-amd64.zip
-unzip /tmp/trojan-go.zip -d /tmp
-mv /tmp/trojan-go /root/calc
-rm -r /tmp/*
-chmod 0755 /root/calc
 
-cat << EOF > /root/server.yaml
-run-type: server
-local-addr: 0.0.0.0
-local-port: 8080
-remote-addr: example.com
-remote-port: 80
-log-level: 5
-password:
-    - $PASSWORD
-websocket:
-    enabled: true
-    path: /robots
-transport-plugin:
-    enabled: true
-    type: plaintext
+echo calc
+cat << EOF | /root/calc | cut -d' ' -f2
+{
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "id": "a6ed9716-3e21-4ea5-9889-e2cb2c41e4bf"
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": "example.com:80"
+          }
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    }
+  ]
+}
 EOF
-
-/root/calc -config /root/server.yaml
