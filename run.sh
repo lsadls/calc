@@ -16,8 +16,7 @@ password:
     - $PASSWORD
 websocket:
     enabled: true
-    path: /$WS_PATH
-    host: example.com
+    path: $WS_PATH
 transport-plugin:
     enabled: true
     type: plaintext
