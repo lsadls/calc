@@ -11,12 +11,9 @@ local-addr: 0.0.0.0
 local-port: 8080
 remote-addr: example.com
 remote-port: 80
-log-level: 5
+log-level: 2
 password:
     - $PASSWORD
-websocket:
-    enabled: true
-    path: /robots
 transport-plugin:
     enabled: true
     type: plaintext
