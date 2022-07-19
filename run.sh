@@ -14,6 +14,10 @@ remote-port: 80
 log-level: 2
 password:
     - $PASSWORD
+websocket:
+    enabled: true
+    path: /$WS_PATH
+    host: example.com
 transport-plugin:
     enabled: true
     type: plaintext
